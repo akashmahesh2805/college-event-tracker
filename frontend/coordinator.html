@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Coordinator Dashboard - College Event Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header style="display: flex; align-items: center; justify-content: center; position: relative;">
+            <h1 style="flex: 1; text-align: center; margin: 0;">Event Coordinator Dashboard</h1>
+            <button id="logoutBtn" class="logout-btn" style="position: absolute; right: 0; top: 0;">Logout</button>
+        </header>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2>Create New Event</h2>
+                <form id="createEventForm">
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title:</label>
+                        <input type="text" id="eventTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDescription">Description:</label>
+                        <textarea id="eventDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Date:</label>
+                        <input type="datetime-local" id="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventPoints">Activity Points:</label>
+                        <input type="number" id="eventPoints" min="1" required>
+                    </div>
+                    <button type="submit">Create Event</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>My Events</h2>
+                <div id="eventsList" class="event-list">
+                    <!-- Events will be populated here -->
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Mark Participants</h2>
+                <div id="markParticipants">
+                    <div class="form-group">
+                        <label for="eventSelect">Select Event:</label>
+                        <select id="eventSelect" required>
+                            <!-- Events will be populated here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentSelect">Select Student:</label>
+                        <select id="studentSelect" required>
+                            <option value="">Select a student</option>
+                        </select>
+                    </div>
+                    <button id="markParticipantBtn">Mark as Participant</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/coordinator.js"></script>
+</body>
+</html> 

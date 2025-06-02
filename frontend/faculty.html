@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - College Event Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header style="display: flex; align-items: center; justify-content: center; position: relative;">
+            <h1 style="flex: 1; text-align: center; margin: 0;">Faculty Dashboard</h1>
+            <button id="logoutBtn" class="logout-btn" style="position: absolute; right: 0; top: 0;">Logout</button>
+        </header>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2>Create Class Schedule</h2>
+                <form id="createScheduleForm">
+                    <div class="form-group">
+                        <label for="className">Class Name:</label>
+                        <input type="text" id="className" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="classDate">Date:</label>
+                        <input type="date" id="classDate" required>
+                    </div>
+                    <button type="submit">Create Schedule</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>View Excused Students</h2>
+                <div class="form-group">
+                    <label for="viewDate">Select Date:</label>
+                    <input type="date" id="viewDate" required>
+                    <button id="viewExcusedBtn">View Excused Students</button>
+                </div>
+                <div id="excusedStudentsList" class="event-list">
+                    <!-- Excused students will be populated here -->
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Create Attendance Exception</h2>
+                <form id="createExceptionForm">
+                    <div class="form-group">
+                        <label for="exceptionClass">Class:</label>
+                        <select id="exceptionClass" required>
+                            <!-- Classes will be populated here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exceptionEvent">Event:</label>
+                        <select id="exceptionEvent" required>
+                            <!-- Events will be populated here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentEmail">Student Email:</label>
+                        <input type="email" id="studentEmail" required>
+                    </div>
+                    <button type="submit">Create Exception</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/faculty.js"></script>
+</body>
+</html> 

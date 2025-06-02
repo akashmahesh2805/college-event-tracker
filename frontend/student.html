@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - College Event Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header style="display: flex; align-items: center; justify-content: center; position: relative;">
+            <h1 style="flex: 1; text-align: center; margin: 0;">Student Dashboard</h1>
+            <button id="logoutBtn" class="logout-btn" style="position: absolute; right: 0; top: 0;">Logout</button>
+        </header>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2>Available Events</h2>
+                <div id="allEventsList" class="event-list">
+                    <!-- All events with register buttons will be populated here -->
+                </div>
+            </div>
+            <div class="card">
+                <h2>My Events</h2>
+                <div id="eventsList" class="event-list">
+                    <!-- Events will be populated here -->
+                </div>
+            </div>
+            <div class="card">
+                <h2>Activity Points Summary</h2>
+                <div id="pointsSummary">
+                    <p>Total Points: <span id="totalPoints">0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/student.js"></script>
+</body>
+</html> 

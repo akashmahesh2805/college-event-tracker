@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f3f7fd;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #2563eb !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px;
+}
+
+.main-bg {
+    min-height: 100vh;
+    width: 100vw;
+    background: #f3f7fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-card {
+    background: #fff;
+    border-radius: 28px;
+    box-shadow: 0 8px 40px 0 rgba(37, 99, 235, 0.18);
+    border: 2.5px solid #2563eb;
+    padding: 32px 48px 32px 48px;
+    max-width: 600px;
+    width: 100%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.brand-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #2563eb;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.tabs {
+    display: flex;
+    width: 100%;
+    margin-bottom: 32px;
+    border-bottom: 2px solid #e3eafc;
+    background: #fff;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 18px 0;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #2563eb;
+    cursor: pointer;
+    transition: color 0.2s, border-bottom 0.2s, background 0.2s;
+    border-bottom: 2px solid transparent;
+    font-weight: 600;
+    background: #fff;
+}
+
+.tab-btn.active {
+    color: #fff;
+    background: #2563eb;
+    border-bottom: 3px solid #2563eb;
+    font-weight: 800;
+    border-radius: 8px 8px 0 0;
+}
+
+.tab-content form {
+    display: none;
+    width: 100%;
+}
+
+.tab-content form.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2563eb;
+    font-size: 1.08rem;
+    font-weight: 700;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 16px 16px;
+    border: 2px solid #e3eafc;
+    border-radius: 10px;
+    font-size: 1.12rem;
+    background: #f8fbff;
+    transition: border 0.2s;
+    color: #1e40af;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 2px solid #2563eb;
+    outline: none;
+    background: #fff;
+}
+
+.primary-btn, button, .logout-btn {
+    width: 100%;
+    padding: 18px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.18rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.10);
+    transition: background 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.primary-btn:hover, button:hover, .logout-btn:hover {
+    background: #1e40af;
+    color: #fff;
+}
+
+/* Dashboard Styles */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 36px;
+    margin-top: 36px;
+}
+
+.card {
+    background: #fff;
+    padding: 32px 32px;
+    border-radius: 28px;
+    box-shadow: 0 8px 40px 0 rgba(37, 99, 235, 0.13);
+    border: 2.5px solid #2563eb;
+}
+
+.card h2 {
+    color: #2563eb;
+    margin-bottom: 18px;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.event-list {
+    list-style: none;
+}
+
+.event-item {
+    padding: 16px 0;
+    border-bottom: 1.5px solid #e3eafc;
+    color: #1e40af;
+    font-size: 1.12rem;
+}
+
+.event-item:last-child {
+    border-bottom: none;
+}
+
+.logout-btn {
+    width: auto;
+    padding: 14px 36px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.12rem;
+    font-weight: 800;
+    cursor: pointer;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.10);
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #1e40af;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+    .center-card {
+        padding: 18px 2vw 18px 2vw;
+        max-width: 99vw;
+    }
+    .brand-title {
+        font-size: 1.5rem;
+    }
+    .dashboard {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .card {
+        padding: 18px 8px;
+    }
+} 
