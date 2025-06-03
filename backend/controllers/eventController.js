@@ -46,21 +46,27 @@ const markParticipant = async (req, res) => {
         }
         const student_id = students[0].id;
 
-        // Check if already marked
+        // Check if already registered
         const [existing] = await pool.query(
             'SELECT * FROM event_participants WHERE event_id = ? AND student_id = ?',
             [event_id, student_id]
         );
         if (existing.length > 0) {
-            return res.status(400).json({ message: 'Student already marked as participant' });
+            // Update attended to 1
+            await pool.query(
+                'UPDATE event_participants SET attended = 1 WHERE event_id = ? AND student_id = ?',
+                [event_id, student_id]
+            );
+            return res.json({ message: 'Student marked as participant successfully (updated).' });
         }
 
+        // Insert new row
         await pool.query(
-            'INSERT INTO event_participants (event_id, student_id, attended) VALUES (?, ?, true)',
+            'INSERT INTO event_participants (event_id, student_id, attended) VALUES (?, ?, 1)',
             [event_id, student_id]
         );
 
-        res.json({ message: 'Student marked as participant successfully' });
+        res.json({ message: 'Student marked as participant successfully (inserted).' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
@@ -72,10 +78,10 @@ const getStudentEvents = async (req, res) => {
         const student_id = req.user.id;
 
         const [events] = await pool.query(
-            `SELECT e.*, ep.attended 
-             FROM events e 
-             JOIN event_participants ep ON e.id = ep.event_id 
-             WHERE ep.student_id = ? 
+            `SELECT e.id, e.title, e.date, e.points, ep.attended
+             FROM events e
+             JOIN event_participants ep ON e.id = ep.event_id
+             WHERE ep.student_id = ?
              ORDER BY e.date DESC`,
             [student_id]
         );
@@ -103,7 +109,7 @@ const studentRegisterEvent = async (req, res) => {
         }
 
         await pool.query(
-            'INSERT INTO event_participants (event_id, student_id, attended) VALUES (?, ?, false)',
+            'INSERT INTO event_participants (event_id, student_id, attended) VALUES (?, ?, 0)',
             [event_id, student_id]
         );
 

@@ -53,6 +53,13 @@ async function fetchDropdownData() {
 // Populate class select dropdown
 function populateClassSelect(classes) {
     exceptionClass.innerHTML = '<option value="">Select a class</option>';
+    if (!classes || classes.length === 0) {
+        const option = document.createElement('option');
+        option.disabled = true;
+        option.textContent = 'No classes available';
+        exceptionClass.appendChild(option);
+        return;
+    }
     classes.forEach(cls => {
         const option = document.createElement('option');
         option.value = cls.id;

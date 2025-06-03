@@ -25,13 +25,15 @@ const getExcusedStudents = async (req, res) => {
         const { date } = req.query;
 
         const [students] = await pool.query(
-            `SELECT u.id, u.name, u.email, e.title as event_title, e.points
+            `SELECT DISTINCT u.id, u.name, u.email, e.title as event_title, e.points
              FROM users u
              JOIN attendance_exceptions ae ON u.id = ae.student_id
              JOIN events e ON ae.event_id = e.id
              JOIN class_schedule cs ON ae.class_schedule_id = cs.id
+             JOIN event_participants ep ON u.id = ep.student_id AND e.id = ep.event_id
              WHERE DATE(cs.date) = ?
-             AND u.role = 'student'`,
+             AND u.role = 'student'
+             AND ep.attended = true`,
             [date]
         );
 
@@ -44,7 +46,19 @@ const getExcusedStudents = async (req, res) => {
 
 const createAttendanceException = async (req, res) => {
     try {
-        const { student_id, class_schedule_id, event_id } = req.body;
+        const { student_email, class_schedule_id, event_id } = req.body;
+
+        // Get student_id from email
+        const [studentResult] = await pool.query(
+            'SELECT id FROM users WHERE email = ? AND role = "student"',
+            [student_email]
+        );
+
+        if (studentResult.length === 0) {
+            return res.status(400).json({ message: 'Student not found' });
+        }
+
+        const student_id = studentResult[0].id;
 
         // Check if exception already exists
         const [existing] = await pool.query(
@@ -56,6 +70,7 @@ const createAttendanceException = async (req, res) => {
             return res.status(400).json({ message: 'Attendance exception already exists' });
         }
 
+        // Insert attendance exception
         await pool.query(
             'INSERT INTO attendance_exceptions (student_id, class_schedule_id, event_id) VALUES (?, ?, ?)',
             [student_id, class_schedule_id, event_id]
@@ -67,6 +82,7 @@ const createAttendanceException = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
 
 const getClassSchedules = async (req, res) => {
     try {
